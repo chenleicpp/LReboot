@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#55000000"
-    android:padding="32dp">
+    android:background="@android:color/transparent"
+    android:padding="2dp">
 
     <LinearLayout
         android:id="@+id/contentDialog"
@@ -22,13 +22,22 @@
             android:layout_marginBottom="24dp"
             android:textColor="#000"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-        <TextView
-            android:id="@+id/message"
+        <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
-            android:layout_marginBottom="24dp"
-            android:textColor="#000"/>
+            android:layout_height="wrap_content">
+            <com.sanshisoft.lreboot.widget.RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioMale"
+                android:text="男"
+                android:checked="true" />
+            <com.sanshisoft.lreboot.widget.RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioFemale"
+                android:text="女" />
+        </RadioGroup>
         <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
