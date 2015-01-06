@@ -206,4 +206,6 @@ public class RadioButton extends CompoundButton {
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, mBorderRadius, borderPaint);
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, thumbRadius, thumbPaint);
     }
+
+
 }

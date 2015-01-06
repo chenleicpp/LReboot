@@ -15,4 +15,16 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
+    <style name="CustomRadioButton" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:button">@drawable/custom_radio</item>
+    </style>
+
+    <style name="CustomRadioButton2" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:button">@drawable/custom_radio</item>
+    </style>
 </resources>

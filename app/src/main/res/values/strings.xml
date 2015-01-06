@@ -4,5 +4,11 @@
     <string name="app_name">LReboot</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+    <string name="reboot">Reboot</string>
+    <string name="recovery_reboot">Reboot to Recovery</string>
+    <string name="reboot_bootloader">Reboot to Bootloader</string>
+    <string name="hot_reboot">Hot Reboot</string>
+    <string name="safe_reboot">Safe Reboot</string>
+    <string name="power_off">Power Off</string>
+    <string name="btn_ok">Choose</string>
 </resources>

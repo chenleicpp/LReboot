@@ -18,38 +18,76 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title"
+            android:text="@string/app_name"
             android:layout_marginBottom="24dp"
             android:textColor="#000"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginTop="20dp"/>
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <com.sanshisoft.lreboot.widget.RadioButton
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginTop="-10dp">
+
+            <RadioButton
+                android:id="@+id/reboot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioMale"
-                android:text="男"
+                android:text="@string/reboot"
+                style="@style/CustomRadioButton2"
                 android:checked="true" />
-            <com.sanshisoft.lreboot.widget.RadioButton
+            <RadioButton
+                android:id="@+id/recovery_reboot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/radioFemale"
-                android:text="女" />
+                android:text="@string/recovery_reboot"
+                style="@style/CustomRadioButton"/>
+
+            <RadioButton
+                android:id="@+id/bootloader_reboot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reboot_bootloader"
+                style="@style/CustomRadioButton"/>
+            <RadioButton
+                android:id="@+id/hot_reboot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hot_reboot"
+                style="@style/CustomRadioButton"/>
+            <RadioButton
+                android:id="@+id/safe_reboot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/safe_reboot"
+                style="@style/CustomRadioButton"/>
+            <RadioButton
+                android:id="@+id/power_off"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/power_off"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:button="@drawable/custom_radio"/>
+
         </RadioGroup>
         <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:orientation="horizontal"
-            android:gravity="right">
+            android:gravity="end"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp">
 
             <com.gc.materialdesign.views.ButtonFlat
                 android:id="@+id/button_accept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#1E88E5"
-                android:text="accept"
+                android:text="@string/btn_ok"
                 android:textColor="@android:color/white"/>
         </LinearLayout>
 
