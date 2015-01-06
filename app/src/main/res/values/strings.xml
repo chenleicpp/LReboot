@@ -2,8 +2,6 @@
 <resources>
 
     <string name="app_name">LReboot</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="reboot">Reboot</string>
     <string name="recovery_reboot">Reboot to Recovery</string>
     <string name="reboot_bootloader">Reboot to Bootloader</string>
@@ -11,4 +9,18 @@
     <string name="safe_reboot">Safe Reboot</string>
     <string name="power_off">Power Off</string>
     <string name="btn_ok">Choose</string>
+    <string name="dlg_ok">OK</string>
+    <string name="dlg_cancel">CANCEL</string>
+    <string name="msg_reboot">Are you sure you want to reboot the device?\nAll unsaved data will be lost!</string>
+    <string name="title_reboot">REBOOT</string>
+    <string name="msg_recovery">Are you sure you want to reboot the device into recovery mode?\nAll unsaved data will be lost!</string>
+    <string name="title_recovery">REBOOT INTO RECOVERY</string>
+    <string name="msg_bootloader">"Are you sure you want to reboot the device into bootloader (fastboot) mode?\nAll unsaved data will be lost!\n\n WARNING:\nThis function will not work on Samsung devices!"</string>
+    <string name="title_bootloader">REBOOT INTO BOOTLOADER</string>
+    <string name="msg_hot">Are you sure you want to reboot the device into hot mode?\nAll unsaved data will be lost!</string>
+    <string name="title_hot">HOT REBOOT</string>
+    <string name="msg_safe">Are you sure you want to reboot the system in safe mode?\nAll unsaved data will be lost!\n\n WARNING:\nYou can\'t use your installed apps in safe mode!</string>
+    <string name="title_safe">SAFE REBOOT</string>
+    <string name="msg_power">Are you sure you want to power off the phone?\nAll unsaved data will be lost!</string>
+    <string name="title_power">POWER OFF</string>
 </resources>
