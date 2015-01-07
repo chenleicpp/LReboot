@@ -54,10 +54,10 @@
                 android:text="@string/reboot_bootloader"
                 style="@style/CustomRadioButton"/>
             <RadioButton
-                android:id="@+id/hot_reboot"
+                android:id="@+id/soft_reboot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/hot_reboot"
+                android:text="@string/soft_reboot"
                 style="@style/CustomRadioButton"/>
             <RadioButton
                 android:id="@+id/safe_reboot"

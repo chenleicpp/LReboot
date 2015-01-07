@@ -1,14 +1,11 @@
 package com.sanshisoft.lreboot;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.RadioGroup;
 
-import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.gc.materialdesign.views.ButtonFlat;
 
@@ -26,7 +23,7 @@ public class MainActivity extends ActionBarActivity {
     ButtonFlat btnChoose;
 
     static Process rebootRecovery, rebootNormal, powerOff, rebootFastboot, rebootSafe,
-            rebootHot;
+            rebootSoft;
     static String message, title, rebootType;
 
     @Override
@@ -49,8 +46,8 @@ public class MainActivity extends ActionBarActivity {
                     case R.id.bootloader_reboot:
                         fastbootReboot();
                         break;
-                    case R.id.hot_reboot:
-                        hotReboot();
+                    case R.id.soft_reboot:
+                        softReboot();
                         break;
                     case R.id.safe_reboot:
                         safeReboot();
@@ -97,11 +94,11 @@ public class MainActivity extends ActionBarActivity {
         return rebootType;
     }
 
-    public String hotReboot() {
+    public String softReboot() {
 
-        message = getString(R.string.msg_hot);
-        title = getString(R.string.title_hot);
-        rebootType = "hot";
+        message = getString(R.string.msg_soft);
+        title = getString(R.string.title_soft);
+        rebootType = "soft";
 
         alertDialog(message, title);
 
@@ -191,9 +188,9 @@ public class MainActivity extends ActionBarActivity {
                 }
 
                 break;
-            case "hot":
+            case "soft":
                 try {
-                    rebootHot = Runtime.getRuntime().exec(new String[]{"su", "-c", "setprop",
+                    rebootSoft = Runtime.getRuntime().exec(new String[]{"su", "-c", "setprop",
                             "ctl.restart", "zygote"});
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -204,7 +201,7 @@ public class MainActivity extends ActionBarActivity {
                 try {
                     rebootSafe = Runtime.getRuntime().exec(new String[]{"su", "-c", "setprop",
                             "persist.sys.safemode", "1"});
-                    rebootHot = Runtime.getRuntime().exec(new String[]{"su", "-c", "setprop",
+                    rebootSoft = Runtime.getRuntime().exec(new String[]{"su", "-c", "setprop",
                             "ctl.restart", "zygote"});
                 } catch (IOException e) {
                     e.printStackTrace();

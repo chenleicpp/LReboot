@@ -5,7 +5,7 @@
     <string name="reboot">正常重启</string>
     <string name="recovery_reboot">刷机模式</string>
     <string name="reboot_bootloader">引导模式</string>
-    <string name="hot_reboot">快速重启</string>
+    <string name="soft_reboot">快速重启</string>
     <string name="safe_reboot">安全模式</string>
     <string name="power_off">关机</string>
     <string name="btn_ok">执行</string>
@@ -17,8 +17,8 @@
     <string name="title_recovery">刷机模式</string>
     <string name="msg_bootloader">"确定要重启设备到引导模式？\n\n 警告:\n该操作将不能用于三星设备！"</string>
     <string name="title_bootloader">引导模式</string>
-    <string name="msg_hot">确定要快速重启设备？</string>
-    <string name="title_hot">快速重启</string>
+    <string name="msg_soft">确定要快速重启设备？</string>
+    <string name="title_soft">快速重启</string>
     <string name="msg_safe">确定要重启设备到安全模式？\n\n 警告:\n你不能再安全模式下安装任何软件！</string>
     <string name="title_safe">安全模式</string>
     <string name="msg_power">确定要关闭设备？</string>
