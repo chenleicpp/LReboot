@@ -23,4 +23,5 @@
     <string name="title_safe">安全模式</string>
     <string name="msg_power">确定要关闭设备？</string>
     <string name="title_power">关机</string>
+    <string name="dlg_loading">执行中，请稍后...</string>
 </resources>

@@ -2,11 +2,13 @@ package com.sanshisoft.lreboot;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.RadioGroup;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.gc.materialdesign.views.ButtonFlat;
 
@@ -140,6 +142,7 @@ public class MainActivity extends ActionBarActivity {
                     public void onPositive(MaterialDialog dialog) {
                         super.onPositive(dialog);
                         rebooter(rebootType);
+                        showProgressDialog();
                     }
 
                     @Override
@@ -147,6 +150,15 @@ public class MainActivity extends ActionBarActivity {
                         super.onNegative(dialog);
                     }
                 })
+                .build()
+                .show();
+    }
+
+    private void showProgressDialog(){
+        new MaterialDialog.Builder(this)
+                .customView(R.layout.custom_dialog, true)
+                .positiveColor(Color.parseColor("#03a9f4"))
+                .build()
                 .show();
     }
 

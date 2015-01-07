@@ -25,4 +25,5 @@ dependencies {
     compile project(':materialDesign')
     compile 'com.jakewharton:butterknife:6.0.0'
     compile 'com.afollestad:material-dialogs:0.5.8'
+    compile 'com.pnikosis:materialish-progress:1.2'
 }

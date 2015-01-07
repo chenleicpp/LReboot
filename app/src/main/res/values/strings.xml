@@ -23,4 +23,5 @@
     <string name="title_safe">SAFE REBOOT</string>
     <string name="msg_power">Are you sure you want to power off the phone?\nAll unsaved data will be lost!</string>
     <string name="title_power">POWER OFF</string>
+    <string name="dlg_loading">Loading...</string>
 </resources>
