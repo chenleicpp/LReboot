@@ -2,13 +2,6 @@
 <resources>
 
     <string name="app_name">LReboot</string>
-    <string name="reboot">Reboot</string>
-    <string name="recovery_reboot">Reboot to Recovery</string>
-    <string name="reboot_bootloader">Reboot to Bootloader</string>
-    <string name="soft_reboot">Soft Reboot</string>
-    <string name="safe_reboot">Safe Reboot</string>
-    <string name="power_off">Power Off</string>
-    <string name="btn_ok">Choose</string>
     <string name="dlg_ok">OK</string>
     <string name="dlg_cancel">CANCEL</string>
     <string name="msg_reboot">Are you sure you want to reboot the device?\nAll unsaved data will be lost!</string>
@@ -23,5 +16,12 @@
     <string name="title_safe">SAFE REBOOT</string>
     <string name="msg_power">Are you sure you want to power off the phone?\nAll unsaved data will be lost!</string>
     <string name="title_power">POWER OFF</string>
-    <string name="dlg_loading">Loading...</string>
+    <string name="dlg_loading">Rebooting...</string>
+
+    <string-array name="reboot_arrays">
+        <item>Reboot</item>
+        <item>Soft reboot</item>
+        <item>Recovery</item>
+        <item>Bootloader</item>
+    </string-array>
 </resources>

@@ -2,13 +2,6 @@
 <resources>
 
     <string name="app_name">电源管理</string>
-    <string name="reboot">正常重启</string>
-    <string name="recovery_reboot">刷机模式</string>
-    <string name="reboot_bootloader">引导模式</string>
-    <string name="soft_reboot">快速重启</string>
-    <string name="safe_reboot">安全模式</string>
-    <string name="power_off">关机</string>
-    <string name="btn_ok">执行</string>
     <string name="dlg_ok">确定</string>
     <string name="dlg_cancel">取消</string>
     <string name="msg_reboot">确定要重启设备？</string>
@@ -23,5 +16,11 @@
     <string name="title_safe">安全模式</string>
     <string name="msg_power">确定要关闭设备？</string>
     <string name="title_power">关机</string>
-    <string name="dlg_loading">执行中，请稍后...</string>
+    <string name="dlg_loading">重启中...</string>
+    <string-array name="reboot_arrays">
+        <item>正常重启</item>
+        <item>快速重启</item>
+        <item>刷机模式</item>
+        <item>引导模式</item>
+    </string-array>
 </resources>

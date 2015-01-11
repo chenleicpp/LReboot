@@ -1,63 +1,74 @@
 package com.sanshisoft.lreboot;
 
-import android.graphics.Color;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
-import android.widget.RadioGroup;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.gc.materialdesign.views.ButtonFlat;
 
 import java.io.IOException;
-
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    @InjectView(R.id.radioGroup)
-    RadioGroup radioGroup;
-    @InjectView(R.id.button_choose)
-    ButtonFlat btnChoose;
-
-    static Process rebootRecovery, rebootNormal, powerOff, rebootFastboot, rebootSafe,
+    static Process rebootRecovery, rebootNormal, rebootFastboot,
             rebootSoft;
     static String message, title, rebootType;
+    static int sSelectIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.inject(this);
+        try{
+            Process process = Runtime.getRuntime().exec("su");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        showRebootDialog(0);
+    }
 
-        btnChoose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int radioId = radioGroup.getCheckedRadioButtonId();
-                switch (radioId){
-                    case R.id.reboot:
-                        normalReboot();
-                        break;
-                    case R.id.recovery_reboot:
-                        recoveryReboot();
-                        break;
-                    case R.id.bootloader_reboot:
-                        fastbootReboot();
-                        break;
-                    case R.id.soft_reboot:
-                        softReboot();
-                        break;
-                    case R.id.safe_reboot:
-                        safeReboot();
-                        break;
-                    case R.id.power_off:
-                        powerOff();
-                        break;
-                }
-            }
-        });
+    public void showRebootDialog(int selectIndex){
+        new MaterialDialog.Builder(this)
+                .title(getString(R.string.app_name))
+                .items(getResources().getStringArray(R.array.reboot_arrays))
+                .itemsCallbackSingleChoice(selectIndex, new MaterialDialog.ListCallback() {
+                    @Override
+                    public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                        sSelectIndex = which;
+                        switch (which){
+                            case 0:
+                                normalReboot();
+                                break;
+                            case 1:
+                                softReboot();
+                                break;
+                            case 2:
+                                recoveryReboot();
+                                break;
+                            case 3:
+                                fastbootReboot();
+                                break;
+                        }
+                    }
+                }).cancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        MainActivity.this.finish();
+                    }
+                })
+                .positiveText(R.string.dlg_ok)
+                .negativeText(R.string.dlg_cancel)
+                .callback(new MaterialDialog.ButtonCallback() {
+
+                    @Override
+                    public void onNegative(MaterialDialog dialog) {
+                        super.onNegative(dialog);
+                        MainActivity.this.finish();
+                    }
+                })
+                .show();
     }
 
     public String normalReboot() {
@@ -105,28 +116,6 @@ public class MainActivity extends ActionBarActivity {
         return rebootType;
     }
 
-    public String safeReboot() {
-
-        title = getString(R.string.title_safe);
-        message = getString(R.string.msg_safe);
-        rebootType = "safe";
-
-        alertDialog(message, title);
-
-        return rebootType;
-    }
-
-    public String powerOff() {
-
-        title = getString(R.string.title_power);
-        message = getString(R.string.msg_power);
-        rebootType = "poweroff";
-
-        alertDialog(message, title);
-
-        return rebootType;
-    }
-
     public void alertDialog(String message, String title) {
 
         new MaterialDialog.Builder(this)
@@ -145,6 +134,13 @@ public class MainActivity extends ActionBarActivity {
                     @Override
                     public void onNegative(MaterialDialog dialog) {
                         super.onNegative(dialog);
+                        showRebootDialog(sSelectIndex);
+                    }
+                })
+                .cancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        showRebootDialog(sSelectIndex);
                     }
                 })
                 .build()
@@ -152,11 +148,11 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void showProgressDialog(){
-        new MaterialDialog.Builder(this)
+        MaterialDialog pDlg = new MaterialDialog.Builder(this)
                 .customView(R.layout.custom_dialog, true)
-                .positiveColor(Color.parseColor("#03a9f4"))
-                .build()
-                .show();
+                .build();
+        pDlg.setCancelable(false);
+        pDlg.show();
     }
 
     public void rebooter(String rebootType) {
@@ -196,23 +192,6 @@ public class MainActivity extends ActionBarActivity {
                     e.printStackTrace();
                 }
 
-                break;
-            case "safe":
-                try {
-                    rebootSafe = Runtime.getRuntime().exec(new String[]{"su", "-c", "setprop",
-                            "persist.sys.safemode", "1"});
-                    rebootSoft = Runtime.getRuntime().exec(new String[]{"su", "-c", "setprop",
-                            "ctl.restart", "zygote"});
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case "poweroff":
-                try {
-                    powerOff = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot","-p"});
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
                 break;
         }
     }
