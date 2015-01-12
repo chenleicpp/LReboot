@@ -8,24 +8,31 @@ import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import java.io.IOException;
+import butterknife.ButterKnife;
+import eu.chainfire.libsuperuser.Shell;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    static Process rebootRecovery, rebootNormal, rebootFastboot,
-            rebootSoft;
     static String message, title, rebootType;
     static int sSelectIndex = 0;
+
+    private static final String REBOOT_CMD = "reboot";
+    private static final String REBOOT_SOFT = "setprop ctl.restart zygote";
+    private static final String REBOOT_RECOVERY_CMD = "reboot recovery";
+    private static final String REBOOT_BOOTLOADER_CMD = "reboot bootloader";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try{
-            Process process = Runtime.getRuntime().exec("su");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (Shell.SU.available()) {
+                    Log.d("LReboot","root available");
+                }
+            }
+        }).start();
         showRebootDialog(0);
     }
 
@@ -48,7 +55,7 @@ public class MainActivity extends ActionBarActivity {
                                 recoveryReboot();
                                 break;
                             case 3:
-                                fastbootReboot();
+                                bootloaderReboot();
                                 break;
                         }
                     }
@@ -94,11 +101,11 @@ public class MainActivity extends ActionBarActivity {
         return rebootType;
     }
 
-    public String  fastbootReboot() {
+    public String  bootloaderReboot() {
 
         message = getString(R.string.msg_bootloader);
         title = getString(R.string.title_bootloader);
-        rebootType = "fastboot";
+        rebootType = "bootloader";
 
         alertDialog(message, title);
 
@@ -159,40 +166,47 @@ public class MainActivity extends ActionBarActivity {
 
         switch (rebootType) {
             case "normal":
-                try {
-                    rebootNormal = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot"});
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Shell.SU.run(REBOOT_CMD);
+                    }
+                }).start();
 
                 break;
             case "recovery":
-                try {
-                    rebootRecovery = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot",
-                            "recovery"});
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Shell.SU.run(REBOOT_RECOVERY_CMD);
+                    }
+                }).start();
 
                 break;
             case "bootloader":
-                try {
-                    rebootFastboot = Runtime.getRuntime().exec(new String[]{"su", "-c", "reboot",
-                            "bootloader"});
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Shell.SU.run(REBOOT_BOOTLOADER_CMD);
+                    }
+                }).start();
 
                 break;
             case "soft":
-                try {
-                    rebootSoft = Runtime.getRuntime().exec(new String[]{"su", "-c", "setprop",
-                            "ctl.restart", "zygote"});
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Shell.SU.run(REBOOT_SOFT);
+                    }
+                }).start();
 
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.reset(this);
     }
 }
